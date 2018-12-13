@@ -1,0 +1,201 @@
+
+<!DOCTYPE html>
+<html lang="zh-Hans" class="loading">
+<head><meta name="generator" content="Hexo 3.8.0">
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="viewport" content="width=device-width, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>苍穹逍遥子_easy</title>
+
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <meta name="google" content="notranslate">
+    <meta name="keywords" content="刘勋鹏凤凰,"> 
+    <meta name="description" content="追寻健康与自由,一起学底层 
+Quick StartCreate a new post1$ hexo new &#34;My New Post&#34;
+More info: Writing
+Run server1$ hexo s,"> 
+    <meta name="author" content="刘勋鹏"> 
+    <link rel="alternative" href="atom.xml" title="苍穹逍遥子_easy" type="application/atom+xml"> 
+    <link rel="icon" href="https://ss2.bdstatic.com/70cFvnSh_Q1YnxGkpoWK1HF6hhy/it/u=460686295,1528174981&fm=200&gp=0.jpg"> 
+    <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.css">
+    <link rel="stylesheet" href="/css/diaspora.css">
+</head>
+</html>
+<body class="loading">
+    <div id="loader"></div>
+    <div id="single">
+    <div id="top" style="display: block;">
+    <div class="bar" style="width: 0;"></div>
+    <a class="icon-home image-icon" href="javascript:;"></a>
+    <div title="播放/暂停" class="icon-play"></div>
+    <h3 class="subtitle">MVEL2.x模板指南</h3>
+    <div class="social">
+        <!--<div class="like-icon">-->
+            <!--<a href="javascript:;" class="likeThis active"><span class="icon-like"></span><span class="count">76</span></a>-->
+        <!--</div>-->
+        <div>
+            <div class="share">
+                <a title="获取二维码" class="icon-scan" href="javascript:;"></a>
+            </div>
+            <div id="qr"></div>
+        </div>
+    </div>
+    <div class="scrollbar"></div>
+</div>
+    <div class="section">
+        <div class="article">
+    <div class="main">
+        <h1 class="title">MVEL2.x模板指南</h1>
+        <div class="stuff">
+            <span>九月 19, 2018</span>
+            
+  <ul class="post-tags-list"><li class="post-tags-list-item"><a class="post-tags-list-link" href="/tags/Java/">Java</a></li><li class="post-tags-list-item"><a class="post-tags-list-link" href="/tags/MVEL/">MVEL</a></li></ul>
+
+
+        </div>
+        <div class="content markdown">
+            <h2 id="简介"><a href="#简介" class="headerlink" title="简介"></a>简介</h2><blockquote>
+<p><a href="https://github.com/mvel/mvel" target="_blank" rel="noopener">MVEL</a>最初作为Mike Brock创建的 Valhalla项目的表达式计算器（<code>expression evaluator</code>）。Valhalla本身是一个早期的类似 Seam 的“开箱即用”的Web 应用框架，而 Valhalla 项目现在处于休眠状态， MVEL则成为一个继续积极发展的项目。相比最初的<code>OGNL</code>、<code>JEXL</code>和<code>JUEL</code>等项目，而它具有远超它们的性能、功能和易用性 - 特别是集成方面。它不会尝试另一种JVM语言，而是着重解决嵌入式脚本的问题。关于MVEL的语法请参考<a href="http://blinkfox.com/mvel-2-xyu-fa-zhi-nan/" target="_blank" rel="noopener">MVEL 2.x语法指南</a></p>
+</blockquote>
+<p>MVEL 2.0提供了一个新的，更强大的，统一的模板引擎，汇集了1.2中引入的许多模板概念。 不幸的是，1.2中的模板引擎的架构不足以用于常规维护，并且决定从头开始完全重写模板引擎。</p>
+<h2 id="一、MVEL-2-0基本模板"><a href="#一、MVEL-2-0基本模板" class="headerlink" title="一、MVEL 2.0基本模板"></a>一、MVEL 2.0基本模板</h2><p>MVEL模板由纯文本文档中的<code>orb-tags</code>组成。 Orb标记表示引擎将在运行时计算模板的动态元素。</p>
+<p>如果你熟悉FreeMarker，这种类型的语法将不会完全陌生。</p>
+<h3 id="1-一个简单的模板"><a href="#1-一个简单的模板" class="headerlink" title="1. 一个简单的模板"></a>1. 一个简单的模板</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">Hello, @&#123;person.getSex() == <span class="string">'F'</span> ? <span class="string">'Ms.'</span> : <span class="string">'Mr.'</span>&#125; @&#123;person.name&#125;</span><br><span class="line"></span><br><span class="line">This e-mail is to thank you <span class="keyword">for</span> your interest in MVEL Templates <span class="number">2.0</span>.</span><br></pre></td></tr></table></figure>
+<p>此模板展示了可以在简单文本中嵌入表达式。当计算结果时，输出可能如下所示：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">Hello, Ms. Sarah Peterson</span><br><span class="line"></span><br><span class="line">This e-mail is to thank you <span class="keyword">for</span> your interest in MVEL Templates <span class="number">2.0</span>.</span><br></pre></td></tr></table></figure>
+<h3 id="2-转义-符号"><a href="#2-转义-符号" class="headerlink" title="2. 转义@符号"></a>2. 转义@符号</h3><p>当然，由于@符号用于表示<code>orb-tag</code>的开头，因此您可能需要对其进行转义，以防止其被编译器处理。幸运的是，只有一种情况，即当你实际上需要输出‘@{‘字符串在您的模板上时。</p>
+<p>由于编译器需要@和{组合触发orb识别，你可以自由使用@符号而不转义它们。例如：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">Email any questions to: foo<span class="meta">@bar</span>.com</span><br><span class="line"></span><br><span class="line">@&#123;date&#125;</span><br><span class="line"><span class="meta">@include</span>&#123;<span class="string">'disclaimer.html'</span>&#125;</span><br></pre></td></tr></table></figure>
+<p>但是在你需要一个@符号挨着一个orb-tag的情况下，你需要通过重复它两次来避免它：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">@&#123;username&#125;@@@&#123;domain&#125;</span><br></pre></td></tr></table></figure>
+<p>这是两个@转义一个符号，第三个@是标签的开始。如果你感觉这看起来太乱，你可以使用替代方法，即使用表达式标签，如下所示：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">@&#123;username&#125;@&#123;<span class="string">'@'</span>&#125;@&#123;domain&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="二、MVEL-2-0-Orb标签"><a href="#二、MVEL-2-0-Orb标签" class="headerlink" title="二、MVEL 2.0 Orb标签"></a>二、MVEL 2.0 Orb标签</h2><p>本文包含了MVEL 2.0模板引擎中所有开箱即用的orb标签。</p>
+<h3 id="1-Orb表达式"><a href="#1-Orb表达式" class="headerlink" title="1. @{} Orb表达式"></a>1. @{} Orb表达式</h3><p>@{}表达式是orb-tag的最基本形式。它包含一个对字符串求值的值表达式，并附加到输出模板中。例如：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Hello, my name is @&#123;person.name&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="2-code-静默代码标签"><a href="#2-code-静默代码标签" class="headerlink" title="2. @code{} 静默代码标签"></a>2. @code{} 静默代码标签</h3><p>静默代码标记允许您在模板中执行MVEL表达式代码。它不返回值，并且不以任何方式影响模板的格式。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@code</span>&#123;age = <span class="number">23</span>; name = <span class="string">'John Doe'</span>&#125;</span><br><span class="line">@&#123;name&#125; is @&#123;age&#125; years old</span><br></pre></td></tr></table></figure>
+<p>该模板将计算出：John Doe is 23 years old。</p>
+<h3 id="3-if-else-控制流标签"><a href="#3-if-else-控制流标签" class="headerlink" title="3. @if{}@else{} 控制流标签"></a>3. @if{}@else{} 控制流标签</h3><p>@if{}和@else{}标签在MVEL模板中提供了完全的if-then-else功能。 例如：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@if</span>&#123;foo != bar&#125;</span><br><span class="line">   Foo not a bar!</span><br><span class="line"><span class="meta">@else</span>&#123;bar != cat&#125;</span><br><span class="line">   Bar is not a cat!</span><br><span class="line"><span class="meta">@else</span>&#123;&#125;</span><br><span class="line">   Foo may be a Bar or a Cat!</span><br><span class="line"><span class="meta">@end</span>&#123;&#125;</span><br></pre></td></tr></table></figure>
+<p>MVEL模板中的所有块必须用<code>@end{}</code>标签来终止，除非是<code>if-then-else</code>结构，其中<code>@else{}</code>标记表示前一个控制语句的终止。</p>
+<h3 id="4-foreach-Foreach迭代"><a href="#4-foreach-Foreach迭代" class="headerlink" title="4. @foreach{} Foreach迭代"></a>4. @foreach{} Foreach迭代</h3><p>foreach标签允许您在模板中迭代集合或数组。 注意：foreach的语法已经在MVEL模板2.0中改变，以使用foreach符号来标记MVEL语言本身的符号。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@foreach</span>&#123;item : products&#125; </span><br><span class="line"> - @&#123;item.serialNumber&#125;</span><br><span class="line"><span class="meta">@end</span>&#123;&#125;</span><br></pre></td></tr></table></figure>
+<p>MVEL 2.0要求您指定一个迭代变量。虽然MVEL 1.2假设您没有指定别名，但由于对该默认操作有一些抱怨，因此已被删除。</p>
+<h3 id="5-多重迭代"><a href="#5-多重迭代" class="headerlink" title="5. 多重迭代"></a>5. 多重迭代</h3><p>您可以通过逗号分隔迭代在一个foreach循环中一次性迭代多个集合：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@foreach</span>&#123;var1 : set1, var2 : set2&#125;</span><br><span class="line">  @&#123;var1&#125;-@&#123;var2&#125;</span><br><span class="line"><span class="meta">@end</span>&#123;&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="6-分隔"><a href="#6-分隔" class="headerlink" title="6. 分隔"></a>6. 分隔</h3><p>你可以通过在<code>@end{}</code>标签中指定迭代器的文本分隔符。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@foreach</span>&#123;item : people&#125;@&#123;item.name&#125;<span class="meta">@end</span>&#123;<span class="string">', '</span>&#125;</span><br></pre></td></tr></table></figure>
+<p>将返回类似这样的结果：John, Mary, Joseph。</p>
+<h3 id="7-include-包含模板文件"><a href="#7-include-包含模板文件" class="headerlink" title="7. @include{} 包含模板文件"></a>7. @include{} 包含模板文件</h3><p>您可以使用此标签将模板文件包含到MVEL模板中。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@include</span>&#123;<span class="string">'header.mv'</span>&#125;</span><br><span class="line"></span><br><span class="line">This is a test template.</span><br></pre></td></tr></table></figure>
+<p>您还可以通过在模板名称后面添加分号在include标签内执行MVEL表达式：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@include</span> &#123;<span class="string">'header.mv'</span>; title =<span class="string">'Foo Title'</span>&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="8-includeNamed-包括一个命名模板"><a href="#8-includeNamed-包括一个命名模板" class="headerlink" title="8. @includeNamed{} 包括一个命名模板"></a>8. @includeNamed{} 包括一个命名模板</h3><p>命名模板是已经通过TemplateRegistry预先编译并传递到运行时的模板，或者已在模板本身中声明的模板。 您只需添加：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@includeNamed</span> &#123;<span class="string">'fooTemplate'</span>&#125;</span><br><span class="line"><span class="meta">@includeNamed</span> &#123;<span class="string">'footerTemplate'</span>，showSomething = <span class="keyword">true</span>&#125;</span><br></pre></td></tr></table></figure>
+<p>你也可以在<code>@includeNamed{}</code>标签中执行MVEL代码，就像<code>@include{}</code>标签一样。</p>
+<h3 id="9-declare-声明一个模板"><a href="#9-declare-声明一个模板" class="headerlink" title="9. @declare{} 声明一个模板"></a>9. @declare{} 声明一个模板</h3><p>除了包括外部文件的外部模板，并以编程方式传递它们之外，您还可以从模板中声明模板。 它允许你做这样的事情：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@declare</span>&#123;<span class="string">'personTemplate'</span>&#125;</span><br><span class="line"> Name: @&#123;name&#125;</span><br><span class="line"> Age:  @&#123;age&#125;</span><br><span class="line"><span class="meta">@end</span>&#123;&#125;</span><br><span class="line"></span><br><span class="line"><span class="meta">@includeNamed</span>&#123;<span class="string">'personTemplate'</span>; name=<span class="string">'John Doe'</span>; age=<span class="number">22</span>&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="10-comment-注释标签"><a href="#10-comment-注释标签" class="headerlink" title="10. @comment{} 注释标签"></a>10. @comment{} 注释标签</h3><p>注释标签允许您向模板添加不可见的注释。 例如：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@comment</span>&#123;</span><br><span class="line">  This is a comment</span><br><span class="line">&#125;</span><br><span class="line">Hello: @&#123;name&#125;!</span><br></pre></td></tr></table></figure>
+<h2 id="三、MVEL-2-0模板集成"><a href="#三、MVEL-2-0模板集成" class="headerlink" title="三、MVEL 2.0模板集成"></a>三、MVEL 2.0模板集成</h2><p>使用MVEL模板是直接和容易的。 与常规MVEL表达式一样，它们可以解释性地执行，或者预编译并重新用于更快的评估。</p>
+<h3 id="1-org-mvel-templates-TemplateRuntime-类"><a href="#1-org-mvel-templates-TemplateRuntime-类" class="headerlink" title="1. org.mvel.templates.TemplateRuntime 类"></a>1. org.mvel.templates.TemplateRuntime 类</h3><p><code>TemplateRuntime</code>类是模板引擎的中心。您可以通过<code>eval()</code>方法将要计算的模板传递给模板引擎。</p>
+<p>一般来说，模板引擎遵循上下文和变量绑定的所有相同规则，使用一组重载的<code>eval()</code>方法。</p>
+<p>下面是一个解析模板的简单例子：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">String template = <span class="string">"Hello, my name is @&#123;name.toUpperCase()&#125;"</span>);</span><br><span class="line">Map vars = <span class="keyword">new</span> HashMap();</span><br><span class="line">vars.put(<span class="string">"name"</span>, <span class="string">"Michael"</span>);</span><br><span class="line"></span><br><span class="line">String output = (String) TemplateRuntime.eval(template, vars);</span><br></pre></td></tr></table></figure>
+<p>在执行结束时，“output”变量将包含字符串：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Hello, my name is MICHAEL</span><br></pre></td></tr></table></figure>
+<h3 id="2-org-mvel-templates-TemplateCompiler类"><a href="#2-org-mvel-templates-TemplateCompiler类" class="headerlink" title="2. org.mvel.templates.TemplateCompiler类"></a>2. org.mvel.templates.TemplateCompiler类</h3><p><code>TemplateCompiler</code>类允许预先编译模板。</p>
+<p>当编译模板时，将生成一个紧凑，可重用的评估树，可以快速用于计算模板。它直接使用：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">String template = <span class="string">"1 + 1 = @&#123;1+1&#125;"</span>;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 编译模板</span></span><br><span class="line">CompiledTemplate compiled = TemplateCompiler.compileTemplate(template);</span><br><span class="line"></span><br><span class="line"><span class="comment">// 执行模板</span></span><br><span class="line">String output = (String) TemplateRuntime.execute(compiled);</span><br></pre></td></tr></table></figure>
+<p>在执行结束时，“output”变量将包含字符串：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="number">1</span> + <span class="number">1</span> = <span class="number">2</span></span><br></pre></td></tr></table></figure>
+
+            <!--[if lt IE 9]><script>document.createElement('audio');</script><![endif]-->
+            <audio id="audio" loop="1" preload="auto" controls="controls" data-autoplay="yes">
+                <source type="audio/mpeg" src="">
+            </audio>
+            
+                <ul id="audio-list" style="display:none">
+                    
+                        <li title="0" data-url="http://link.hhtjim.com/163/425570952.mp3"></li>
+                    
+                        <li title="1" data-url="http://link.hhtjim.com/163/425570952.mp3"></li>
+                    
+                </ul>
+            
+        </div>
+        
+    <div id="gitalk-container" class="comment link" data-ae="yes" data-ci="" data-cs="" data-r="" data-o="" data-a="" data-d="false">查看评论</div>
+
+
+    </div>
+    
+</div>
+
+
+    </div>
+</div>
+</body>
+<script src="//cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.min.js"></script>
+<script src="//lib.baomitu.com/jquery/1.8.3/jquery.min.js"></script>
+<script src="/js/plugin.js"></script>
+<script src="/js/diaspora.js"></script>
+<link rel="stylesheet" href="/photoswipe/photoswipe.css">
+<link rel="stylesheet" href="/photoswipe/default-skin/default-skin.css">
+<script src="/photoswipe/photoswipe.min.js"></script>
+<script src="/photoswipe/photoswipe-ui-default.min.js"></script>
+
+<!-- Root element of PhotoSwipe. Must have class pswp. -->
+<div class="pswp" tabindex="-1" role="dialog" aria-hidden="true">
+    <!-- Background of PhotoSwipe. 
+         It's a separate element as animating opacity is faster than rgba(). -->
+    <div class="pswp__bg"></div>
+    <!-- Slides wrapper with overflow:hidden. -->
+    <div class="pswp__scroll-wrap">
+        <!-- Container that holds slides. 
+            PhotoSwipe keeps only 3 of them in the DOM to save memory.
+            Don't modify these 3 pswp__item elements, data is added later on. -->
+        <div class="pswp__container">
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+        </div>
+        <!-- Default (PhotoSwipeUI_Default) interface on top of sliding area. Can be changed. -->
+        <div class="pswp__ui pswp__ui--hidden">
+            <div class="pswp__top-bar">
+                <!--  Controls are self-explanatory. Order can be changed. -->
+                <div class="pswp__counter"></div>
+                <button class="pswp__button pswp__button--close" title="Close (Esc)"></button>
+                <button class="pswp__button pswp__button--share" title="Share"></button>
+                <button class="pswp__button pswp__button--fs" title="Toggle fullscreen"></button>
+                <button class="pswp__button pswp__button--zoom" title="Zoom in/out"></button>
+                <!-- Preloader demo http://codepen.io/dimsemenov/pen/yyBWoR -->
+                <!-- element will get class pswp__preloader--active when preloader is running -->
+                <div class="pswp__preloader">
+                    <div class="pswp__preloader__icn">
+                      <div class="pswp__preloader__cut">
+                        <div class="pswp__preloader__donut"></div>
+                      </div>
+                    </div>
+                </div>
+            </div>
+            <div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap">
+                <div class="pswp__share-tooltip"></div> 
+            </div>
+            <button class="pswp__button pswp__button--arrow--left" title="Previous (arrow left)">
+            </button>
+            <button class="pswp__button pswp__button--arrow--right" title="Next (arrow right)">
+            </button>
+            <div class="pswp__caption">
+                <div class="pswp__caption__center"></div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+</html>

@@ -1,0 +1,318 @@
+
+<!DOCTYPE html>
+<html lang="zh-Hans" class="loading">
+<head><meta name="generator" content="Hexo 3.8.0">
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="viewport" content="width=device-width, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>苍穹逍遥子_easy</title>
+
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <meta name="google" content="notranslate">
+    <meta name="keywords" content="刘勋鹏凤凰,"> 
+    <meta name="description" content="追寻健康与自由,一起学底层 
+Quick StartCreate a new post1$ hexo new &#34;My New Post&#34;
+More info: Writing
+Run server1$ hexo s,"> 
+    <meta name="author" content="刘勋鹏"> 
+    <link rel="alternative" href="atom.xml" title="苍穹逍遥子_easy" type="application/atom+xml"> 
+    <link rel="icon" href="https://ss2.bdstatic.com/70cFvnSh_Q1YnxGkpoWK1HF6hhy/it/u=460686295,1528174981&fm=200&gp=0.jpg"> 
+    <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.css">
+    <link rel="stylesheet" href="/css/diaspora.css">
+</head>
+</html>
+<body class="loading">
+    <div id="loader"></div>
+    <div id="single">
+    <div id="top" style="display: block;">
+    <div class="bar" style="width: 0;"></div>
+    <a class="icon-home image-icon" href="javascript:;"></a>
+    <div title="播放/暂停" class="icon-play"></div>
+    <h3 class="subtitle">JavaScript之再学习</h3>
+    <div class="social">
+        <!--<div class="like-icon">-->
+            <!--<a href="javascript:;" class="likeThis active"><span class="icon-like"></span><span class="count">76</span></a>-->
+        <!--</div>-->
+        <div>
+            <div class="share">
+                <a title="获取二维码" class="icon-scan" href="javascript:;"></a>
+            </div>
+            <div id="qr"></div>
+        </div>
+    </div>
+    <div class="scrollbar"></div>
+</div>
+    <div class="section">
+        <div class="article">
+    <div class="main">
+        <h1 class="title">JavaScript之再学习</h1>
+        <div class="stuff">
+            <span>十月 30, 2018</span>
+            
+  <ul class="post-tags-list"><li class="post-tags-list-item"><a class="post-tags-list-link" href="/tags/JavaScript/">JavaScript</a></li></ul>
+
+
+        </div>
+        <div class="content markdown">
+            <h2 id="概览"><a href="#概览" class="headerlink" title="概览"></a>概览</h2><p>JavaScript 是一种面向对象的动态语言，它包含类型、运算符、标准内置（ built-in）对象和方法。它的语法来源于 Java 和 C，所以这两种语言的许多语法特性同样适用于 JavaScript。需要注意的一个主要区别是 JavaScript 不支持类，类这一概念在 JavaScript 通过对象原型（object prototype）得到延续。另一个主要区别是 JavaScript 中的函数也是对象，JavaScript 允许函数在包含可执行代码的同时，能像其他对象一样被传递。</p>
+<h2 id="数据类型和结构"><a href="#数据类型和结构" class="headerlink" title="数据类型和结构"></a>数据类型和结构</h2><h3 id="1-动态类型"><a href="#1-动态类型" class="headerlink" title="1. 动态类型"></a>1. 动态类型</h3><p><code>JavaScript</code>是一种弱类型或者说动态语言。这意味着你不用提前声明变量的类型，在程序运行过程中，类型会被自动确定。这也意味着你可以使用同一个变量保存不同类型的数据：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> foo = <span class="number">42</span>;    <span class="comment">// foo is a Number now</span></span><br><span class="line"><span class="keyword">var</span> foo = <span class="string">"bar"</span>; <span class="comment">// foo is a String now</span></span><br><span class="line"><span class="keyword">var</span> foo = <span class="literal">true</span>;  <span class="comment">// foo is a Boolean now</span></span><br></pre></td></tr></table></figure>
+<h3 id="2-数据类型"><a href="#2-数据类型" class="headerlink" title="2. 数据类型"></a>2. 数据类型</h3><p>最新的<code>ECMAScript</code>标准定义了 7 种数据类型:</p>
+<ul>
+<li>6 种原始类型<ul>
+<li><code>Null</code> (空, 只有一个值<code>null</code>)</li>
+<li><code>Undefined</code> (未定义, 一个没有被赋值的变量的默认值是<code>undefined</code>):</li>
+<li><code>Boolean</code> (布尔, 可以有两个值：<code>true</code> 和 <code>false</code>)</li>
+<li><code>Number</code> (数字)</li>
+<li><code>String</code> (字符串)</li>
+<li><code>Symbol</code> (符号, ECMAScript 6 新定义的类型，表示独一无二的值)</li>
+</ul>
+</li>
+<li>和 <code>Object</code> (对象)<ul>
+<li><code>Function</code> (函数)</li>
+<li><code>Array</code> (数组)</li>
+<li><code>Date</code> (日期)</li>
+<li><code>JSON</code> (JS对象标识,来序列化对象、数组、数值、字符串、布尔值和 <code>null</code>)</li>
+<li><code>Math</code> (数学方面的计算)</li>
+<li><code>RegExp</code> (正则表达式)</li>
+<li><code>Error</code> (错误)</li>
+<li><code>Map</code></li>
+<li><code>Set</code></li>
+</ul>
+</li>
+</ul>
+<h3 id="内置对象"><a href="#内置对象" class="headerlink" title="内置对象"></a>内置对象</h3><p>这里的<strong>内置对象</strong>指的是在全局作用域(<code>global scope</code>)中的对象，由于很多，不再一一列出说明，更全面的解释在<a href="https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Global_Objects" target="_blank" rel="noopener">这里</a>。</p>
+<p>全局对象本身可通过<code>this</code>操作符在全局作用域中获得。实际上，全局作用域就是由全局对象的各个属性组成的（包括继承来的属性）。</p>
+<h2 id="严格模式"><a href="#严格模式" class="headerlink" title="严格模式"></a>严格模式</h2><p>除了正常运行模式，ECMAscript 5添加了第二种运行模式：”严格模式”（<code>strict mode</code>）。顾名思义，这种模式使得Javascript在更严格的条件下运行。</p>
+<p>严格模式可以应用到整个script标签或个别函数中。设立”严格模式”的目的，主要有以下几个：</p>
+<ul>
+<li>消除 Javascript 语法的一些不合理、不严谨之处，减少一些怪异行为;</li>
+<li>消除代码运行的一些不安全之处，保证代码运行的安全；</li>
+<li>提高编译器效率，增加运行速度；</li>
+<li>为未来新版本的 Javascript 做好铺垫。</li>
+</ul>
+<h3 id="为某个script标签开启严格模式"><a href="#为某个script标签开启严格模式" class="headerlink" title="为某个script标签开启严格模式"></a>为某个script标签开启严格模式</h3><p>进入严格模式的标志，是下面这行语句：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">'use strict'</span></span><br></pre></td></tr></table></figure>
+<h3 id="为某个函数开启严格模式"><a href="#为某个函数开启严格模式" class="headerlink" title="为某个函数开启严格模式"></a>为某个函数开启严格模式</h3><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">strict</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">  <span class="comment">// 函数级别严格模式语法</span></span><br><span class="line"><span class="meta">  'use strict'</span>;</span><br><span class="line">  <span class="keyword">return</span> <span class="string">"I'm a strict mode function!  "</span> + nested();</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">notStrict</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="string">"I'm not strict."</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="相等性判断"><a href="#相等性判断" class="headerlink" title="相等性判断"></a>相等性判断</h2><p>JavaScript提供三种不同的值比较操作：</p>
+<ul>
+<li>严格相等 (“triple equals” 或 “identity”)，使用<code>===</code></li>
+<li>宽松相等 (“double equals”) ，使用<code>==</code></li>
+<li>以及<code>Object.is</code> (ECMAScript 2015/ ES6 新特性)</li>
+</ul>
+<p>简而言之，在比较两件事情时，双等号将执行类型转换; 三等号将进行相同的比较，而不进行类型转换 (如果类型不同, 只是总会返回 false );  而<code>Object.is</code>的行为方式与三等号相同，但是对于NaN和-0和+0进行特殊处理，所以最后两个不相同，而<code>Object.is(NaN，NaN)</code>将为 true。</p>
+<p><img src="http://static.blinkfox.com/js_equals.png" alt="各原始类型值的相等比较对照表"></p>
+<h2 id="作用域"><a href="#作用域" class="headerlink" title="作用域"></a>作用域</h2><p>作用域就是变量与函数的可访问范围，即作用域控制着变量与函数的可见性和生命周期。在JavaScript中，变量的作用域有<strong>全局作用域</strong>和<strong>局部作用域</strong>两种。</p>
+<h3 id="全局作用域"><a href="#全局作用域" class="headerlink" title="全局作用域"></a>全局作用域</h3><p>在代码中任何地方都能访问到的对象拥有全局作用域。一般来说以下几种情形：</p>
+<ul>
+<li>最外层函数和在最外层函数外面定义的变量拥有全局作用域。</li>
+<li>所有未定义而直接赋值的变量自动声明为拥有全局作用域。</li>
+<li>所有window对象的属性拥有全局作用域。如：<code>window.name</code>、<code>window.location</code>等。</li>
+</ul>
+<blockquote>
+<p><strong>注</strong>：全局变量存在于程序的整个生命周期。没有块级作用域。</p>
+</blockquote>
+<h3 id="局部作用域"><a href="#局部作用域" class="headerlink" title="局部作用域"></a>局部作用域</h3><p>局部作用域一般只在固定的代码片段内可访问到，最常见的是在函数内部，所有在一些地方也会看到有人把这种作用域称为<strong>函数作用域</strong>。</p>
+<h3 id="作用域链"><a href="#作用域链" class="headerlink" title="作用域链"></a>作用域链</h3><p>JavaScript里一切都是对象。函数对象和其它对象一样，拥有可以通过代码访问的属性和一系列仅供JavaScript引擎访问的内部属性。其中一个内部属性是<code>Scope</code>，该内部属性包含了函数被创建的作用域中对象的集合，这个集合被称为函数的作用域链，它决定了哪些数据能被函数访问。</p>
+<p>因为全局变量总是存在于<strong>运行时上下文</strong>作用域链的最末端。所以，在标识符解析的时候，查找全局变量是最慢的。所以，在编写代码的时候应尽量少使用全局变量，尽可能使用局部变量。一个好的经验法则是：<strong>如果一个跨作用域的对象被引用了一次以上，则先把它存储到局部变量里再使用</strong>。</p>
+<p><code>with</code>语句主要用来临时扩展作用域链，将语句中的对象添加到作用域的头部。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">person = &#123;<span class="attr">name</span>: <span class="string">"yhb"</span>, <span class="attr">age</span>: <span class="number">22</span>, <span class="attr">height</span>:<span class="number">175</span>, <span class="attr">wife</span>: &#123;<span class="attr">name</span>: <span class="string">"lwy"</span>, <span class="attr">age</span>: <span class="number">21</span>&#125;&#125;;</span><br><span class="line"><span class="keyword">with</span> (person.wife) &#123;</span><br><span class="line">    <span class="built_in">console</span>.log(name);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>with语句将<code>person.wife</code>添加到当前作用域链的头部，所以输出的就是：<code>lwy</code>；with语句结束后，作用域链恢复正常。</p>
+<blockquote>
+<p>当代码运行到with语句时，运行期上下文的作用域链临时被改变了。一个新的可变对象被创建，它包含了参数指定的对象的所有属性。这个对象将被推入作用域链的头部，这意味着函数的所有局部变量现在处于第二个作用域链对象中，因此访问代价更高了。<br><strong>注</strong>：在程序中应避免使用with语句。</p>
+</blockquote>
+<h2 id="闭包-Closures"><a href="#闭包-Closures" class="headerlink" title="闭包(Closures)"></a>闭包(Closures)</h2><h3 id="一个示例"><a href="#一个示例" class="headerlink" title="一个示例"></a>一个示例</h3><p>如何从外部读取局部变量？</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">f1</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">    <span class="keyword">var</span> n=<span class="number">999</span>;</span><br><span class="line">    <span class="function"><span class="keyword">function</span> <span class="title">f2</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">        alert(n); <span class="comment">// 999</span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>在上面的代码中，函数f2就被包括在函数f1内部，这时f1内部的所有局部变量，对f2都是可见的。但是反过来就不行，f2内部的局部变量，对f1就是不可见的。这就是Javascript语言特有的”链式作用域”结构（<code>chain scope</code>），子对象会一级一级地向上寻找所有父对象的变量。所以，<strong>父对象的所有变量，对子对象都是可见的，反之则不成立</strong>。</p>
+<p>既然f2可以读取f1中的局部变量，那么只要把f2作为返回值，我们不就可以在f1外部读取它的内部变量了吗！</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">f1</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">    <span class="keyword">var</span> n=<span class="number">999</span>;</span><br><span class="line">    <span class="function"><span class="keyword">function</span> <span class="title">f2</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">        alert(n); <span class="comment">// 999</span></span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> f2;</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">var</span> result=f1();</span><br><span class="line">result(); <span class="comment">// 999</span></span><br></pre></td></tr></table></figure>
+<h3 id="闭包解释"><a href="#闭包解释" class="headerlink" title="闭包解释"></a>闭包解释</h3><blockquote>
+<p><strong>闭包定义</strong>：闭包是一个函数和函数所声明的词法环境的结合。</p>
+</blockquote>
+<p>在上面的代码中，f2函数就是闭包。<strong>闭包</strong>（<code>closure</code>）定义非常抽象，很难看懂。我的理解是，<strong>闭包就是能够读取其他函数内部变量的函数</strong>。在本质上，闭包就是将函数内部和函数外部连接起来的一座桥梁。</p>
+<p>闭包最大用处有两个，一个是可以读取函数内部的变量，另一个就是让这些变量的值始终保持在内存中，不会在调用结束后被垃圾回收机制（<code>garbage collection</code>）回收。</p>
+<h3 id="立即执行函数表达式"><a href="#立即执行函数表达式" class="headerlink" title="立即执行函数表达式"></a>立即执行函数表达式</h3><p>有时你想模拟一个模拟块级作用域，例如你想将变量从全局作用域隔离。完成这个工作的模式叫做<code>IIFE</code>(立即执行函数表达式(<code>Immediately Invoked Function Expression</code>))：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">(<span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;  <span class="comment">// 块开始</span></span><br><span class="line">    <span class="keyword">var</span> tmp = ...;  <span class="comment">// 非全局变量</span></span><br><span class="line">&#125;());  <span class="comment">// 块结束</span></span><br></pre></td></tr></table></figure>
+<h3 id="用闭包模拟私有方法"><a href="#用闭包模拟私有方法" class="headerlink" title="用闭包模拟私有方法"></a>用闭包模拟私有方法</h3><p>JavaScript 并不提供原生的支持私有方法，但是可以使用闭包模拟私有方法。私有方法不仅仅有利于限制对代码的访问：还提供了管理全局命名空间的强大能力，避免非核心的方法弄乱了代码的公共接口部分。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> Counter = (<span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">    <span class="keyword">var</span> privateCounter = <span class="number">0</span>;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">function</span> <span class="title">changeBy</span>(<span class="params">val</span>) </span>&#123;</span><br><span class="line">        privateCounter += val;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> &#123;</span><br><span class="line">        increment: <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">            changeBy(<span class="number">1</span>);</span><br><span class="line">        &#125;,</span><br><span class="line">        decrement: <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">            changeBy(<span class="number">-1</span>);</span><br><span class="line">        &#125;,</span><br><span class="line">        value: <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">            <span class="keyword">return</span> privateCounter;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;)();</span><br><span class="line"></span><br><span class="line"><span class="built_in">console</span>.log(Counter.value()); <span class="comment">/* logs 0 */</span></span><br><span class="line">Counter.increment();</span><br><span class="line">Counter.increment();</span><br><span class="line"><span class="built_in">console</span>.log(Counter.value()); <span class="comment">/* logs 2 */</span></span><br><span class="line">Counter.decrement();</span><br><span class="line"><span class="built_in">console</span>.log(Counter.value()); <span class="comment">/* logs 1 */</span></span><br></pre></td></tr></table></figure>
+<p>上面创建了一个环境，为三个函数所共享：<code>Counter.increment</code>, <code>Counter.decrement</code>和<code>Counter.value</code>。该共享环境创建于一个匿名函数体内，该函数一经定义立刻执行。环境中包含两个私有项：名为<code>privateCounter</code>的变量和名为<code>changeBy</code>的函数。这两项都无法在匿名函数外部直接访问。必须通过匿名包装器返回的三个公共函数访问。</p>
+<p><strong>注意</strong>：</p>
+<ul>
+<li>由于闭包会使得函数中的变量都被保存在内存中，内存消耗很大，所以不能滥用闭包，否则会造成网页的性能问题，在IE中可能导致内存泄露。解决方法是，在退出函数之前，将不使用的局部变量全部删除。</li>
+<li>闭包会在父函数外部，改变父函数内部变量的值。所以，如果你把父函数当作对象（object）使用，把闭包当作它的公用方法（Public Method），把内部变量当作它的私有属性（private value），这时一定要小心，不要随便改变父函数内部变量的值。</li>
+</ul>
+<h2 id="内存机制"><a href="#内存机制" class="headerlink" title="内存机制"></a>内存机制</h2><p>首先JavaScript中的变量分为<strong>基本类型</strong>和<strong>引用类型</strong>。</p>
+<ul>
+<li>基本类型就是保存在栈内存中的简单数据段。基本类型有<code>Undefined</code>、<code>Null</code>、<code>Boolean</code>、<code>Number</code>和<code>String</code>。这些类型在内存中分别占有固定大小的空间，他们的值保存在<strong>栈空间</strong>，我们通过按值来访问的。</li>
+<li>引用类型指的是那些保存在堆内存中的对象。引用类型，值大小不固定，栈内存中存放地址指向堆内存中的对象。是按引用访问的。栈内存中存放的只是该对象的访问地址，在堆内存中为这个值分配空间。</li>
+</ul>
+<h3 id="为什么会有栈内存和堆内存之分？"><a href="#为什么会有栈内存和堆内存之分？" class="headerlink" title="为什么会有栈内存和堆内存之分？"></a>为什么会有栈内存和堆内存之分？</h3><p>与垃圾回收机制有关，为了使程序运行时占用的内存最小。</p>
+<p>当一个方法执行时，每个方法都会建立自己的内存栈，在这个方法内定义的变量将会逐个放入这块栈内存里，随着方法的执行结束，这个方法的内存栈也将自然销毁了。因此，所有在方法中定义的变量都是放在栈内存中的；</p>
+<p>当我们在程序中创建一个对象时，这个对象将被保存到运行时数据区中，以便反复利用（因为对象的创建成本通常较大），这个运行时数据区就是堆内存。堆内存中的对象不会随方法的结束而销毁，即使方法结束后，这个对象还可能被另一个引用变量所引用（方法的参数传递时很常见），则这个对象依然不会被销毁，只有当一个对象没有任何引用变量引用它时，系统的垃圾回收机制才会在核实的时候回收它。</p>
+<h3 id="垃圾回收机制"><a href="#垃圾回收机制" class="headerlink" title="垃圾回收机制"></a>垃圾回收机制</h3><p>Javascript具有自动垃圾回收机制(<code>GC</code>:<code>Garbage Collecation</code>)，也就是说，执行环境会负责管理代码执行过程中使用的内存。</p>
+<p>JavaScript垃圾回收的机制很简单：<strong>找出不再使用的变量，然后释放掉其占用的内存，但是这个过程不是实时的，因为其开销比较大，所以垃圾回收器会按照固定的时间间隔周期性的执行</strong>。</p>
+<p>不再使用的变量也就是生命周期结束的变量，当然只可能是局部变量，全局变量的生命周期直至浏览器卸载页面才会结束。局部变量只在函数的执行过程中存在，而在这个过程中会为局部变量在栈或堆上分配相应的空间，以存储它们的值，然后在函数中使用这些变量，直至函数结束，而闭包中由于内部函数的原因，外部函数并不能算是结束。</p>
+<h4 id="清除方式"><a href="#清除方式" class="headerlink" title="清除方式"></a>清除方式</h4><ul>
+<li><strong>标记清除</strong>：垃圾回收器在运行的时候会给存储在内存中的所有变量都加上标记。然后，它会去掉环境中的变量以及被环境中的变量引用的变量的标记（闭包）。而在此之后再被加上标记的变量将被视为准备删除的变量，原因是环境中的变量已经无法访问到这些变量了。最后，垃圾回收器完成内存清除工作，销毁那些带标记的值并回收它们所占用的内存空间。</li>
+<li><strong>引用计数</strong>：引用计数的含义是跟踪记录每个值被引用的次数。当声明了一个变量并将一个引用类型值赋给该变量时，则这个值的引用次数就是1。如果同一个值又被赋给另一个变量，则该值的引用次数加1。相反，如果包含对这个值引用的变量又取得了另外一个值，则这个值的引用次数减1。当这个值的引用次数变成0时，则说明没有办法再访问这个值了，因而就可以将其占用的内存空间回收回来。这样，当垃圾回收器下次再运行时，它就会释放那些引用次数为0的值所占用的内存。</li>
+</ul>
+<h2 id="原型-prototype"><a href="#原型-prototype" class="headerlink" title="原型(prototype)"></a>原型(prototype)</h2><p>原型是一个对象，其他对象可以通过它实现属性继承。JavaScript的对象中都包含了一个<code>Prototype</code>内部属性，这个属性所对应的就是该对象的原型。<code>Prototype</code>作为对象的内部属性，是不能被直接访问的。所以为了方便查看一个对象的原型，Firefox和Chrome中提供了<code>__proto__</code>这个非标准的访问器。</p>
+<ul>
+<li>所有的对象都有<code>__proto__</code>属性，该属性对应着该对象的原型。</li>
+<li>所有的函数对象都有<code>prototype</code>属性，该属性的值会被赋值给该函数创建的对象的<code>__proto__</code>属性</li>
+<li>所有的原型对象都有<code>constructor</code>属性，该属性对应创建所有指向该原型的实例的构造函数</li>
+<li>函数对象和原型对象通过<code>prototype</code>和<code>constructor</code>属性进行相互关联</li>
+<li><code>Object</code>实例对象的原型<code>obj.__proto__</code>就是<code>Object.prototype</code></li>
+<li><code>hasOwnProperty</code>是<code>Object.prototype</code>的一个方法，该方法能判断一个对象是否包含自定义属性而不是原型链上的属性，因为”hasOwnProperty” 是 JavaScript 中唯一一个处理属性但是不查找原型链的函数</li>
+</ul>
+<h3 id="原型链"><a href="#原型链" class="headerlink" title="原型链"></a>原型链</h3><p>因为每个对象和原型都有原型，对象的原型指向对象的父，而父的原型又指向父的父，这种原型层层连接起来的就构成了原型链。</p>
+<p>当通过原型链查找一个属性的时候，首先查找的是对象本身的属性，如果找不到才会继续按照原型链进行查找。这样一来，如果想要覆盖原型链上的一些属性，我们就可以直接在对象中引入这些属性，达到属性隐藏的效果。</p>
+<h2 id="对象创建方式"><a href="#对象创建方式" class="headerlink" title="对象创建方式"></a>对象创建方式</h2><h3 id="1-Object构造函数方式"><a href="#1-Object构造函数方式" class="headerlink" title="1. Object构造函数方式"></a>1. Object构造函数方式</h3><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> Person = <span class="keyword">new</span> <span class="built_in">Object</span>();</span><br><span class="line">Person.name = <span class="string">'Nike'</span>;</span><br><span class="line">Person.age = <span class="number">29</span>;</span><br></pre></td></tr></table></figure>
+<p>这行代码创建了<code>Object</code>引用类型的一个新实例，然后把实例保存在变量<code>Person</code>中。</p>
+<h3 id="2-对象字面量方式"><a href="#2-对象字面量方式" class="headerlink" title="2. 对象字面量方式"></a>2. 对象字面量方式</h3><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> Person = &#123;</span><br><span class="line"> name: <span class="string">'Nike'</span>;</span><br><span class="line"> age: <span class="number">29</span>;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+<p>对象字面量是对象定义的一种简写形式，目的在于简化创建包含大量属性对象的过程。</p>
+<blockquote>
+<p><strong>注</strong>：前两种方法的缺点在于：它们都是用了同一个接口创建很多对象，会产生大量的重复代码，就是如果你有100个对象，那你要输入100次很多相同的代码。那我们有什么方法来避免过多的重复代码呢，就是把创建对象的过程封装在函数体内，通过函数的调用直接生成对象。</p>
+</blockquote>
+<h3 id="3-工厂模式"><a href="#3-工厂模式" class="headerlink" title="3. 工厂模式"></a>3. 工厂模式</h3><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">createPerson</span>(<span class="params">name, age, job</span>) </span>&#123;</span><br><span class="line">    <span class="keyword">var</span> o = <span class="keyword">new</span> <span class="built_in">Object</span>();</span><br><span class="line">    o.name = name;</span><br><span class="line">    o.age = age;</span><br><span class="line">    o.job = job;</span><br><span class="line">    o.sayName = <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">        alert(<span class="keyword">this</span>.name);</span><br><span class="line">    &#125;;</span><br><span class="line">    <span class="keyword">return</span> o;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> person1 = createPerson(<span class="string">'Nike'</span>, <span class="number">29</span>, <span class="string">'teacher'</span>);</span><br></pre></td></tr></table></figure>
+<p>在使用工厂模式创建对象的时候，我们都可以注意到，在<code>createPerson</code>函数中，返回的是一个对象。但我们就无法判断返回的对象究竟是一个什么样的类型。于是就出现了第四种创建对象的模式。</p>
+<h3 id="4-构造函数方式"><a href="#4-构造函数方式" class="headerlink" title="4. 构造函数方式"></a>4. 构造函数方式</h3><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">Person</span>(<span class="params">name, age, job</span>) </span>&#123;</span><br><span class="line">    <span class="keyword">this</span>.name = name;</span><br><span class="line">    <span class="keyword">this</span>.age = age;</span><br><span class="line">    <span class="keyword">this</span>.job = job;</span><br><span class="line">    <span class="keyword">this</span>.sayName = <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">        alert(<span class="keyword">this</span>.name);</span><br><span class="line">    &#125;;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> person1 = <span class="keyword">new</span> Person(<span class="string">'Nike'</span>, <span class="number">29</span>, <span class="string">'teacher'</span>);</span><br><span class="line">alert(person1 <span class="keyword">instanceof</span> <span class="built_in">Object</span>); <span class="comment">//ture</span></span><br></pre></td></tr></table></figure>
+<p>对比工厂模式，我们可以发现以下区别：</p>
+<ul>
+<li>没有显示地创建对象</li>
+<li>直接将属性和方法赋给了<code>this</code>对象</li>
+<li>没有<code>return</code>语句</li>
+<li>终于可以识别的对象的类型。对于检测对象类型，我们应该使用instanceof操作符，我们来进行自主检测：</li>
+</ul>
+<p>那么构造函数确实挺好用的，但是它也有它的缺点：就是每个方法都要在每个实例上重新创建一遍，方法指的就是我们在对象里面定义的函数。如果方法的数量很多，就会占用很多不必要的内存。于是出现了第五种创建对象的方法。</p>
+<h3 id="5-原型创建对象模式"><a href="#5-原型创建对象模式" class="headerlink" title="5. 原型创建对象模式"></a>5. 原型创建对象模式</h3><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">Person</span>(<span class="params"></span>)</span>&#123;&#125;</span><br><span class="line">Person.prototype.name = <span class="string">'Nike'</span>;</span><br><span class="line">Person.prototype.age = <span class="number">20</span>;</span><br><span class="line">Person.prototype.jbo = <span class="string">'teacher'</span>;</span><br><span class="line">Person.prototype.sayName = <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">    alert(<span class="keyword">this</span>.name);</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> person1 = <span class="keyword">new</span> Person();</span><br><span class="line"><span class="keyword">var</span> person2 = <span class="keyword">new</span> Person();</span><br><span class="line">person1.name = <span class="string">'Greg'</span>;</span><br><span class="line">alert(person1.name); <span class="comment">//'Greg' --来自实例</span></span><br><span class="line">alert(person2.name); <span class="comment">//'Nike' --来自原型</span></span><br></pre></td></tr></table></figure>
+<p>当为对象实例添加一个属性时，这个属性就会屏蔽原型对象中保存的同名属性。</p>
+<p>这时候我们就可以使用构造函数模式与原型模式结合的方式，构造函数模式用于定义实例属性，而原型模式用于定义方法和共享的属性。</p>
+<h3 id="6-组合使用构造函数模式和原型模式"><a href="#6-组合使用构造函数模式和原型模式" class="headerlink" title="6. 组合使用构造函数模式和原型模式"></a>6. 组合使用构造函数模式和原型模式</h3><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">Person</span>(<span class="params">name, age, job</span>) </span>&#123;</span><br><span class="line">    <span class="keyword">this</span>.name = name;</span><br><span class="line">    <span class="keyword">this</span>.age = age;</span><br><span class="line">    <span class="keyword">this</span>.job = job;</span><br><span class="line">&#125;</span><br><span class="line">Person.prototype = &#123;</span><br><span class="line">    <span class="keyword">constructor</span>: Person,</span><br><span class="line">    sayName: function()&#123;</span><br><span class="line">        alert(<span class="keyword">this</span>.name);</span><br><span class="line">    &#125;;</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">var</span> person1 = <span class="keyword">new</span> Person(<span class="string">'Nike'</span>, <span class="number">20</span>, <span class="string">'teacher'</span>);</span><br></pre></td></tr></table></figure>
+<h3 id="7-动态原型模式"><a href="#7-动态原型模式" class="headerlink" title="7. 动态原型模式"></a>7. 动态原型模式</h3><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">Person</span>(<span class="params">name, age, job</span>) </span>&#123;</span><br><span class="line">    <span class="keyword">this</span>.name = name;</span><br><span class="line">    <span class="keyword">this</span>.age = age;</span><br><span class="line">    <span class="keyword">this</span>.job = job;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">if</span> (<span class="keyword">typeof</span> <span class="keyword">this</span>.sayName != <span class="string">'function'</span>) &#123;</span><br><span class="line">        Person.prototype.sayName = <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">            alert(<span class="keyword">this</span>.name);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> person1 = <span class="keyword">new</span> Person(<span class="string">'Nike'</span>, <span class="number">20</span>, <span class="string">'teacher'</span>);</span><br><span class="line">person1.sayName();</span><br></pre></td></tr></table></figure>
+<p>动态原型模式将所有信息封装在了构造函数中，而通过构造函数中初始化原型（仅第一个对象实例化时初始化原型），这个可以通过判断该方法是否有效而选择是否需要初始化原型。</p>
+<h3 id="8-寄生构造函数方式"><a href="#8-寄生构造函数方式" class="headerlink" title="8. 寄生构造函数方式"></a>8. 寄生构造函数方式</h3><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">Person</span>(<span class="params">name, age, job</span>) </span>&#123;</span><br><span class="line">    <span class="keyword">var</span> o = <span class="keyword">new</span> <span class="built_in">Object</span>();</span><br><span class="line">    o.name = name;</span><br><span class="line">    o.age = age;</span><br><span class="line">    o.job = job;</span><br><span class="line">    o.sayName = <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">        alert(<span class="keyword">this</span>.name);</span><br><span class="line">    &#125;;</span><br><span class="line">    <span class="keyword">return</span> o;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> person1 = <span class="keyword">new</span> Person(<span class="string">'Nike'</span>, <span class="number">29</span>, <span class="string">'teacher'</span>);</span><br></pre></td></tr></table></figure>
+<p>寄生模式和工厂模式几乎一样，寄生模式和工厂模式的区别：</p>
+<ul>
+<li>寄生模式创建对象时使用了<code>new</code>关键字</li>
+<li>寄生模式的外部包装函数是一个构造函数</li>
+</ul>
+<blockquote>
+<p><strong>作用</strong>:寄生模式可以在特殊的情况下为对象来创建构造函数,原因在于我们可以通过构造函数重写对象的值，并通过return返回。重写调用构造函数(创建的对象的实例)之后的对象实例的新的值。</p>
+</blockquote>
+<h3 id="9-稳妥构造函数方式"><a href="#9-稳妥构造函数方式" class="headerlink" title="9. 稳妥构造函数方式"></a>9. 稳妥构造函数方式</h3><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">Person</span>(<span class="params">name, age, job</span>) </span>&#123;</span><br><span class="line">    <span class="keyword">var</span> o = <span class="keyword">new</span> <span class="built_in">Object</span>();</span><br><span class="line">    o.sayName = <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">        alert(<span class="keyword">this</span>.name);</span><br><span class="line">    &#125;;</span><br><span class="line">    <span class="keyword">return</span> o;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> person = <span class="keyword">new</span> Person(<span class="string">'Nike'</span>, <span class="number">29</span>, <span class="string">'teacher'</span>);</span><br><span class="line">person.sayName(); <span class="comment">// 使用稳妥构造函数模式只能通过其构造函数内部的方法来获取里面的属性值</span></span><br></pre></td></tr></table></figure>
+<p>道格拉斯·克拉克福德发明了JavaScript中的稳妥对象这个概念。所谓稳妥对象，是指没有公共属性，而且其方法也不引用<code>this</code>对象。稳妥对象最适合在一些安全环境中（这些环境会禁止使用<code>this</code>和<code>new</code>），或者在防止数据被其他应用程序改动时使用。稳妥构造函数遵循的与寄生构造函数类似的模式，但又两点不同：</p>
+<ul>
+<li>一是新创建对象的实例方法不引用<code>this</code>；</li>
+<li>二是不使用<code>new</code>操作符调用构造函数。</li>
+</ul>
+<blockquote>
+<p><strong>注</strong>：与寄生构造函数模式类似，使用稳妥构造函数模式创建的对象与构造函数之间没有什么关系，因此instanceof操作符对这种对象也没有意义。</p>
+</blockquote>
+<h2 id="并发模型和事件循环-event-loop"><a href="#并发模型和事件循环-event-loop" class="headerlink" title="并发模型和事件循环(event loop)"></a>并发模型和事件循环(event loop)</h2><p>JavaScript 的并发模型基于<strong>事件循环</strong>。</p>
+<p><img src="http://static.blinkfox.com/js_event.png" alt="Js堆栈队列图"></p>
+<h3 id="1-运行时概念"><a href="#1-运行时概念" class="headerlink" title="1. 运行时概念"></a>1. 运行时概念</h3><h4 id="栈"><a href="#栈" class="headerlink" title="栈"></a>栈</h4><p>函数调用形成了一个栈帧。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">foo</span>(<span class="params">b</span>) </span>&#123;</span><br><span class="line">  <span class="keyword">var</span> a = <span class="number">10</span>;</span><br><span class="line">  <span class="keyword">return</span> a + b + <span class="number">11</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">bar</span>(<span class="params">x</span>) </span>&#123;</span><br><span class="line">  <span class="keyword">var</span> y = <span class="number">3</span>;</span><br><span class="line">  <span class="keyword">return</span> foo(x * y);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="built_in">console</span>.log(bar(<span class="number">7</span>));</span><br></pre></td></tr></table></figure>
+<p>当调用 bar 时，创建了第一个帧 ，帧中包含了 bar 的参数和局部变量。当 bar 调用 foo 时，第二个帧就被创建，并被压到第一个帧之上，帧中包含了 foo 的参数和局部变量。当 foo 返回时，最上层的帧就被弹出栈（剩下 bar 函数的调用帧 ）。当 bar 返回的时候，栈就空了。</p>
+<h4 id="堆"><a href="#堆" class="headerlink" title="堆"></a>堆</h4><p>对象被分配在一个堆中，即用以表示一个大部分非结构化的内存区域。</p>
+<h4 id="队列"><a href="#队列" class="headerlink" title="队列"></a>队列</h4><p>一个 JavaScript 运行时包含了一个待处理的消息队列。每一个消息都与一个函数相关联。当栈拥有足够内存时，从队列中取出一个消息进行处理。这个处理过程包含了调用与这个消息相关联的函数（以及因而创建了一个初始堆栈帧）。当栈再次为空的时候，也就意味着消息处理结束。</p>
+<h3 id="2-事件循环"><a href="#2-事件循环" class="headerlink" title="2. 事件循环"></a>2. 事件循环</h3><p>之所以称为<strong>事件循环</strong>，是因为它经常被用于类似如下的方式来实现：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">while</span> (queue.waitForMessage()) &#123;</span><br><span class="line">  queue.processNextMessage();</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>如果当前没有任何消息，queue.waitForMessage 会等待着同步将要到来的消息。</p>
+<p>每一个消息完整的执行后，其它消息才会被执行。这个模型的一个缺点在于当一个消息的完成耗时过长，网络应用无法处理用户的交互如点击或者滚动。浏览器用“程序需要过长时间运行”的对话框来缓解这个问题。一个比较好的解决方案是使消息处理变短且如果可能的话，将一个消息拆分成几个消息。</p>
+<p>在浏览器里，当一个事件出现且有一个事件监听器被绑定时，消息会被随时添加。如果没有事件监听器，事件会丢失。所以点击一个附带点击事件处理函数的元素会添加一个消息。其它事件亦然。</p>
+<h3 id="3-绝不阻塞"><a href="#3-绝不阻塞" class="headerlink" title="3. 绝不阻塞"></a>3. 绝不阻塞</h3><p>事件循环(event loop)模型特性在于它<strong>永不阻塞</strong>。通常由事件或者回调函数进行 I/O (input/output)处理 。</p>
+<hr>
+<p>参考文档：</p>
+<ul>
+<li><a href="https://developer.mozilla.org/zh-CN/docs/Web/JavaScript" target="_blank" rel="noopener">MDN</a></li>
+</ul>
+
+            <!--[if lt IE 9]><script>document.createElement('audio');</script><![endif]-->
+            <audio id="audio" loop="1" preload="auto" controls="controls" data-autoplay="yes">
+                <source type="audio/mpeg" src="">
+            </audio>
+            
+                <ul id="audio-list" style="display:none">
+                    
+                        <li title="0" data-url="http://link.hhtjim.com/163/425570952.mp3"></li>
+                    
+                        <li title="1" data-url="http://link.hhtjim.com/163/425570952.mp3"></li>
+                    
+                </ul>
+            
+        </div>
+        
+    <div id="gitalk-container" class="comment link" data-ae="yes" data-ci="" data-cs="" data-r="" data-o="" data-a="" data-d="false">查看评论</div>
+
+
+    </div>
+    
+</div>
+
+
+    </div>
+</div>
+</body>
+<script src="//cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.min.js"></script>
+<script src="//lib.baomitu.com/jquery/1.8.3/jquery.min.js"></script>
+<script src="/js/plugin.js"></script>
+<script src="/js/diaspora.js"></script>
+<link rel="stylesheet" href="/photoswipe/photoswipe.css">
+<link rel="stylesheet" href="/photoswipe/default-skin/default-skin.css">
+<script src="/photoswipe/photoswipe.min.js"></script>
+<script src="/photoswipe/photoswipe-ui-default.min.js"></script>
+
+<!-- Root element of PhotoSwipe. Must have class pswp. -->
+<div class="pswp" tabindex="-1" role="dialog" aria-hidden="true">
+    <!-- Background of PhotoSwipe. 
+         It's a separate element as animating opacity is faster than rgba(). -->
+    <div class="pswp__bg"></div>
+    <!-- Slides wrapper with overflow:hidden. -->
+    <div class="pswp__scroll-wrap">
+        <!-- Container that holds slides. 
+            PhotoSwipe keeps only 3 of them in the DOM to save memory.
+            Don't modify these 3 pswp__item elements, data is added later on. -->
+        <div class="pswp__container">
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+        </div>
+        <!-- Default (PhotoSwipeUI_Default) interface on top of sliding area. Can be changed. -->
+        <div class="pswp__ui pswp__ui--hidden">
+            <div class="pswp__top-bar">
+                <!--  Controls are self-explanatory. Order can be changed. -->
+                <div class="pswp__counter"></div>
+                <button class="pswp__button pswp__button--close" title="Close (Esc)"></button>
+                <button class="pswp__button pswp__button--share" title="Share"></button>
+                <button class="pswp__button pswp__button--fs" title="Toggle fullscreen"></button>
+                <button class="pswp__button pswp__button--zoom" title="Zoom in/out"></button>
+                <!-- Preloader demo http://codepen.io/dimsemenov/pen/yyBWoR -->
+                <!-- element will get class pswp__preloader--active when preloader is running -->
+                <div class="pswp__preloader">
+                    <div class="pswp__preloader__icn">
+                      <div class="pswp__preloader__cut">
+                        <div class="pswp__preloader__donut"></div>
+                      </div>
+                    </div>
+                </div>
+            </div>
+            <div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap">
+                <div class="pswp__share-tooltip"></div> 
+            </div>
+            <button class="pswp__button pswp__button--arrow--left" title="Previous (arrow left)">
+            </button>
+            <button class="pswp__button pswp__button--arrow--right" title="Next (arrow right)">
+            </button>
+            <div class="pswp__caption">
+                <div class="pswp__caption__center"></div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+</html>

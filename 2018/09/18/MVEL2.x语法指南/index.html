@@ -1,0 +1,311 @@
+
+<!DOCTYPE html>
+<html lang="zh-Hans" class="loading">
+<head><meta name="generator" content="Hexo 3.8.0">
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="viewport" content="width=device-width, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>苍穹逍遥子_easy</title>
+
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <meta name="google" content="notranslate">
+    <meta name="keywords" content="刘勋鹏凤凰,"> 
+    <meta name="description" content="追寻健康与自由,一起学底层 
+Quick StartCreate a new post1$ hexo new &#34;My New Post&#34;
+More info: Writing
+Run server1$ hexo s,"> 
+    <meta name="author" content="刘勋鹏"> 
+    <link rel="alternative" href="atom.xml" title="苍穹逍遥子_easy" type="application/atom+xml"> 
+    <link rel="icon" href="https://ss2.bdstatic.com/70cFvnSh_Q1YnxGkpoWK1HF6hhy/it/u=460686295,1528174981&fm=200&gp=0.jpg"> 
+    <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.css">
+    <link rel="stylesheet" href="/css/diaspora.css">
+</head>
+</html>
+<body class="loading">
+    <div id="loader"></div>
+    <div id="single">
+    <div id="top" style="display: block;">
+    <div class="bar" style="width: 0;"></div>
+    <a class="icon-home image-icon" href="javascript:;"></a>
+    <div title="播放/暂停" class="icon-play"></div>
+    <h3 class="subtitle">MVEL 2.x语法指南</h3>
+    <div class="social">
+        <!--<div class="like-icon">-->
+            <!--<a href="javascript:;" class="likeThis active"><span class="icon-like"></span><span class="count">76</span></a>-->
+        <!--</div>-->
+        <div>
+            <div class="share">
+                <a title="获取二维码" class="icon-scan" href="javascript:;"></a>
+            </div>
+            <div id="qr"></div>
+        </div>
+    </div>
+    <div class="scrollbar"></div>
+</div>
+    <div class="section">
+        <div class="article">
+    <div class="main">
+        <h1 class="title">MVEL 2.x语法指南</h1>
+        <div class="stuff">
+            <span>九月 18, 2018</span>
+            
+  <ul class="post-tags-list"><li class="post-tags-list-item"><a class="post-tags-list-link" href="/tags/Java/">Java</a></li><li class="post-tags-list-item"><a class="post-tags-list-link" href="/tags/MVEL/">MVEL</a></li></ul>
+
+
+        </div>
+        <div class="content markdown">
+            <h1 id="MVEL-2-x语法指南"><a href="#MVEL-2-x语法指南" class="headerlink" title="MVEL 2.x语法指南"></a>MVEL 2.x语法指南</h1><p><a href="https://github.com/mvel/mvel" target="_blank" rel="noopener">MVEL</a>全称为：MVFLEX Expression Language，是用来计算Java语法所编写的表达式值的表达式语言。MVEL的语法很大程度上受到Java语法的启发，但为了使表达式语法更高效,还是有一些基本差异，例如可以像正则表达式一样直接支持集合、数组和字符串匹配的运算。</p>
+<p>除了表达式语言之外，MVEL还用作配置和字符串构造的模板语言。这里还有一个关于<a href="https：//en.wikipedia.org/wiki/MVEL">MVEL</a>介绍信息的wiki页面是：https：//en.wikipedia.org/wiki/MVEL。</p>
+<p>MVEL 2.x表达式主要包括以下特性：</p>
+<ul>
+<li>属性表达式</li>
+<li>布尔表达式</li>
+<li>方法调用</li>
+<li>变量赋值</li>
+<li>函数定义</li>
+</ul>
+<h2 id="一、基本语法"><a href="#一、基本语法" class="headerlink" title="一、基本语法"></a>一、基本语法</h2><p>MVEL是基于Java语法的表达式语言，具有特定于MVEL的一些明显差异。与Java不同，MVEL是动态类型化（可选类型化），意味着在源代码中不需要类型限定。</p>
+<p>MVEL可以方便的集成到产品中使用。Maven的集成方式如下：</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">dependency</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>org.mvel<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>mvel2<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">version</span>&gt;</span>2.2.8.Final<span class="tag">&lt;/<span class="name">version</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<p>一个MVEL表达式，简单的可以是单个标识符，复杂的则可能是一个充满了方法调用和内部集合创建的庞大的布尔表达式。使用MVEL提供的API。可以动态得到表达式的执行结果。</p>
+<h3 id="1-简单属性表达式"><a href="#1-简单属性表达式" class="headerlink" title="1. 简单属性表达式"></a>1. 简单属性表达式</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">user.name</span><br></pre></td></tr></table></figure>
+<p>在这个表达式中，我们只有一个标识符（user.name），在MVEL中我们称它为属性表达式，因为表达式的唯一目的就是从上下文中提取出变量或者对象的属性。属性表达式是最常见的用途之一，通过它，MVEL可以用来作为一个高性能，易使用的反射优化器。</p>
+<p>MVEL甚至可以用来计算布尔表达式：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">user.name ==<span class="string">'John Doe'</span></span><br></pre></td></tr></table></figure>
+<p>与Java一样，MVEL支持所有优先级规则，包括通过括号来控制执行顺序。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">(user.name == <span class="string">'John Doe'</span>) &amp;&amp; ((x * <span class="number">2</span>) - <span class="number">1</span>) &gt; <span class="number">20</span></span><br></pre></td></tr></table></figure>
+<h3 id="2-复合语句"><a href="#2-复合语句" class="headerlink" title="2. 复合语句"></a>2. 复合语句</h3><p>您可以使用分号来表示语句的终止，使用任意数量的语句编写脚本。分号在所有情况下都是必需的，除非在脚本中只有一个语句或最后一个语句。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">statement1; statement2; statement3</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p><strong>注意</strong>：statement3语句后可以缺少分号。</p>
+</blockquote>
+<p>另外，换行不能替代分号来作为一个语句的结束标识。</p>
+<h3 id="3-返回值"><a href="#3-返回值" class="headerlink" title="3. 返回值"></a>3. 返回值</h3><p>MVEL是被设计为一个集成语言作为核心，允许开发人员提供简单的脚本设置绑定和逻辑。因此，MVEL表达式使用“last value out”原则（输出最后值原则）。这意味着，尽管MVEL支持return关键字，但却没必要使用它。例如：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">a = <span class="number">10</span>;</span><br><span class="line">b = (a = a * <span class="number">2</span>) + <span class="number">10</span>;</span><br><span class="line">a;</span><br></pre></td></tr></table></figure>
+<p>在该示例中，表达式返回a的值，因为<code>a;</code>是表达式的最后一个值。它在功能上与下面的脚本等价：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">a = <span class="number">10</span>;</span><br><span class="line">b = (a = a * <span class="number">2</span>) + <span class="number">10</span>;</span><br><span class="line"><span class="keyword">return</span> a;</span><br></pre></td></tr></table></figure>
+<h2 id="二、值判断"><a href="#二、值判断" class="headerlink" title="二、值判断"></a>二、值判断</h2><p>在MVEL中所有的判断是否相等，都是对值的判断，而没有对引用的判断，因此表达式<code>foo == &#39;bar&#39;</code>等价于Java中的<code>foo.equals(&quot;bar&quot;)</code>。</p>
+<h3 id="1-判断空值"><a href="#1-判断空值" class="headerlink" title="1. 判断空值"></a>1. 判断空值</h3><p>MVEL提供了一个特殊的字符来表示值为空的情况，叫作<code>empty</code>，例如：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">foo == empty</span><br></pre></td></tr></table></figure>
+<p>若foo满足空的任何条件，这个表达式值都为true。</p>
+<h3 id="2-判断Null值"><a href="#2-判断Null值" class="headerlink" title="2. 判断Null值"></a>2. 判断Null值</h3><p>MVEL中，<code>null</code>和<code>nil</code>都可以用来表示一个Null值，如：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">foo == <span class="keyword">null</span>;</span><br><span class="line">foo == nil; <span class="comment">// 和null一样</span></span><br></pre></td></tr></table></figure>
+<h3 id="3-强制转换"><a href="#3-强制转换" class="headerlink" title="3. 强制转换"></a>3. 强制转换</h3><p>当两个不同类型且没有可比性的值进行比较时，MVEL会应用类型强制转换系统，即将左边的值强制转换成右边的值的类型，反之亦然。如：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="string">"123"</span> == <span class="number">123</span>;</span><br></pre></td></tr></table></figure>
+<p>这个表达式的值为true,因为为了执行比较，强制类型转换系统会隐式的将数字<code>123</code>转换成字符串。</p>
+<h2 id="三、内联Lists、Maps和数组Arrays"><a href="#三、内联Lists、Maps和数组Arrays" class="headerlink" title="三、内联Lists、Maps和数组Arrays"></a>三、内联Lists、Maps和数组Arrays</h2><p>MVEL允许你使用简单优雅的语法来表示Lists，Mpas和数组Arrays。 且看下面的示例：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">[<span class="string">"Bob"</span> : <span class="keyword">new</span> Person(<span class="string">"Bob"</span>), <span class="string">"Michael"</span> : <span class="keyword">new</span> Person(<span class="string">"Michael"</span>)]</span><br></pre></td></tr></table></figure>
+<p>这个表达式的功能等价于：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">Map map = <span class="keyword">new</span> HashMap();</span><br><span class="line">map.put(<span class="string">"Bob"</span>, <span class="keyword">new</span> Person(<span class="string">"Bob"</span>));</span><br><span class="line">map.put(<span class="string">"Michael"</span>, <span class="keyword">new</span> Person(<span class="string">"Michael"</span>));</span><br></pre></td></tr></table></figure>
+<p>用这种结构描述MVEL内部数据结构，功能非常强大，你可以在任何地方使用它，甚至可以作为方法的参数使用，如：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">something.someMethod([<span class="string">"foo"</span> : <span class="string">"bar"</span>]);</span><br></pre></td></tr></table></figure>
+<h3 id="1-Lists"><a href="#1-Lists" class="headerlink" title="1. Lists"></a>1. Lists</h3><p>Lists用以下格式来表示：”[item1, item2, …]”，如：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">[<span class="string">"Jim"</span>, <span class="string">"Bob"</span>, <span class="string">"Smith"</span>]</span><br></pre></td></tr></table></figure>
+<h3 id="2-Maps"><a href="#2-Maps" class="headerlink" title="2. Maps"></a>2. Maps</h3><p>Maps用以下格式来表示：”[key1 : value1, key2: value2, …]”，如：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">[<span class="string">"Foo"</span> : <span class="string">"Bar"</span>, <span class="string">"Bar"</span> : <span class="string">"Foo"</span>]</span><br></pre></td></tr></table></figure>
+<h3 id="3-数组Arrays"><a href="#3-数组Arrays" class="headerlink" title="3. 数组Arrays"></a>3. 数组Arrays</h3><p>数组Arrays用以下格式来表示：”{item1, item2, …}”，如：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&#123;<span class="string">"Jim"</span>, <span class="string">"Bob"</span>, <span class="string">"Smith"</span>&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="4-数组强制转换"><a href="#4-数组强制转换" class="headerlink" title="4. 数组强制转换"></a>4. 数组强制转换</h3><p>关于内联数组，需要知道的一个非常重要的方面是，它可以被强制转换成其它类型的数组，当你声明一个数组时，是不直接指定其类型的，但你可以通过将其传递给一个接收int[]类型参数的方法来指定。如：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">foo.someMethod(&#123;<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>,<span class="number">4</span>&#125;);</span><br></pre></td></tr></table></figure>
+<p>在这种情况下，当MVEL发现目标方法接收的是一个int[]，会自动的将{1,2,3,4}转换成int[]类型。</p>
+<h2 id="四、属性导航"><a href="#四、属性导航" class="headerlink" title="四、属性导航"></a>四、属性导航</h2><p>MVEL属性导航遵循在其他语言（如Groovy，OGNL，EL等）中bean属性表达式中公认惯例的使用方式。和其它语言必须通过底层的方法来控制权限不同的是，MVEL提供了一种单一的，统一的语法来访问属性，静态字段和maps等。</p>
+<h3 id="1-Bean属性"><a href="#1-Bean属性" class="headerlink" title="1. Bean属性"></a>1. Bean属性</h3><p>大多数java开发者都熟悉getter/setter模式，并在java对象中用它来封装属性的访问权限。例如，你可能会通过下面的方式访问一个对象的属性：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">user.getManager().getName();</span><br></pre></td></tr></table></figure>
+<p>为了简化此操作，您可以使用以下表达式访问相同的属性：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">user.manager.name</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p><strong>注意：</strong>当一个对象中的字段的作用域是public时，MVEL仍然倾向于通过get方法来访问其属性。</p>
+</blockquote>
+<h3 id="2-Bean的安全属性导航"><a href="#2-Bean的安全属性导航" class="headerlink" title="2. Bean的安全属性导航"></a>2. Bean的安全属性导航</h3><p>有时，当你的表达式中会含有null元素时，这时就需要你进行一个为空判断，否则就会发生错误。当你使用null-safe操作符时你可以简化这个操作：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">user.?manager.name</span><br></pre></td></tr></table></figure>
+<p>它的功能相当于：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">if</span> (user.manager != <span class="keyword">null</span>) &#123; <span class="keyword">return</span> user.manager.name; &#125; <span class="keyword">else</span> &#123; <span class="keyword">return</span> <span class="keyword">null</span>; &#125;</span><br></pre></td></tr></table></figure>
+<h3 id="3-集合"><a href="#3-集合" class="headerlink" title="3. 集合"></a>3. 集合</h3><p>集合的遍历也可以通过简单的语法来实现：</p>
+<h4 id="1-List的访问"><a href="#1-List的访问" class="headerlink" title="(1). List的访问"></a>(1). List的访问</h4><p>List可以像访问数组一样访问，如：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">user[<span class="number">5</span>]</span><br></pre></td></tr></table></figure>
+<p>这等价与java中的代码：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">user.get(<span class="number">5</span>);</span><br></pre></td></tr></table></figure>
+<h4 id="2-Map的访问"><a href="#2-Map的访问" class="headerlink" title="(2). Map的访问"></a>(2). Map的访问</h4><p>Map的访问和访问数组也非常相似，不同的是，在访问Map时索引值可以是任意对象，如：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">user[<span class="string">"foobar"</span>]</span><br></pre></td></tr></table></figure>
+<p>这等价与java中的代码：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">user.get(<span class="string">"foobar"</span>);</span><br></pre></td></tr></table></figure>
+<p>当Map的key是String类型时，还可以使用特殊的方式来访问，如：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">user.foobar</span><br></pre></td></tr></table></figure>
+<h3 id="4-字符串作数组"><a href="#4-字符串作数组" class="headerlink" title="4. 字符串作数组"></a>4. 字符串作数组</h3><p>为了能使用属性的索引（迭代也是如此），所有的字符串都可以看成是一个数组，在MVEL中你可以用下面的方式来获取一个字符串变量的第一个字符：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">foo = <span class="string">"My String"</span>;</span><br><span class="line">foo[<span class="number">0</span>]; <span class="comment">// returns 'M'</span></span><br></pre></td></tr></table></figure>
+<h2 id="五、文字常量"><a href="#五、文字常量" class="headerlink" title="五、文字常量"></a>五、文字常量</h2><p>在脚本语言中，一段文字（常量）用来代表一个固定的值。</p>
+<h3 id="1-字符串常量"><a href="#1-字符串常量" class="headerlink" title="1. 字符串常量"></a>1. 字符串常量</h3><p>字符串常量可以用一对单引号或一对双引号来界定。如：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="string">"This is a string literal"</span></span><br><span class="line"><span class="string">'This is also string literal'</span></span><br></pre></td></tr></table></figure>
+<h4 id="字符串转义字符"><a href="#字符串转义字符" class="headerlink" title="字符串转义字符"></a>字符串转义字符</h4><ul>
+<li>\ - 代表一个反斜杠。</li>
+<li>\n - 换行符</li>
+<li>\r - 回车符</li>
+<li>\u#### - Unicode字符 (如: /uAE00)</li>
+<li>### - 八进制字符 (如: /73)</li>
+</ul>
+<h3 id="2-数字常量"><a href="#2-数字常量" class="headerlink" title="2. 数字常量"></a>2. 数字常量</h3><p>整数可以表示为十进制（基数为10），8进制（基数为8），或十六进制（基数为16）。</p>
+<p>一个十进制数字，不从零开始（相对于8进制、16进制而言），可以表示任意数，如：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="number">125</span> <span class="comment">// 十进制</span></span><br></pre></td></tr></table></figure>
+<p>一个八进制数，以0为前缀，后面跟着0到7内的数字。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="number">0353</span> <span class="comment">// 八进制</span></span><br></pre></td></tr></table></figure>
+<p>一个十六进制，以0X为前缀，后面可以跟着0-9，A-F范围内的数字。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="number">0xAFF0</span> <span class="comment">// 十六进制</span></span><br></pre></td></tr></table></figure>
+<h3 id="3-浮点型常量"><a href="#3-浮点型常量" class="headerlink" title="3. 浮点型常量"></a>3. 浮点型常量</h3><p>浮点数由整数和由点/周期字符表示的小数部分组成，带有可选的类型后缀。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="number">10.503</span> <span class="comment">// double型</span></span><br><span class="line"><span class="number">94.92</span>d <span class="comment">// double型</span></span><br><span class="line"><span class="number">14.5f</span> <span class="comment">// float型</span></span><br></pre></td></tr></table></figure>
+<h3 id="4-大数字常量"><a href="#4-大数字常量" class="headerlink" title="4. 大数字常量"></a>4. 大数字常量</h3><p>您可以使用后缀B和I（必须大写）来表示BigDecimal和BigInteger文字，如：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="number">104.39484</span>B <span class="comment">// BigDecimal</span></span><br><span class="line"><span class="number">8.4</span>I <span class="comment">// BigInteger</span></span><br></pre></td></tr></table></figure>
+<h3 id="5-布尔常量"><a href="#5-布尔常量" class="headerlink" title="5. 布尔常量"></a>5. 布尔常量</h3><p>布尔型常量用保留关键字true和false来表示。</p>
+<h3 id="6-空常量"><a href="#6-空常量" class="headerlink" title="6. 空常量"></a>6. 空常量</h3><p>用null或nil来表示。</p>
+<h2 id="六、类型常量"><a href="#六、类型常量" class="headerlink" title="六、类型常量"></a>六、类型常量</h2><p>类型常量的处理方式与Java中的相同，格式为：”<packagename>.<classname>“。</classname></packagename></p>
+<p>所以一个类可以这样限定：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">java.util.HashMap</span><br></pre></td></tr></table></figure>
+<p>或者如果类已经通过或者通过外部配置被导入，则它被简单地通过其非限定名称来引用：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">HashMap</span><br></pre></td></tr></table></figure>
+<h3 id="嵌套类"><a href="#嵌套类" class="headerlink" title="嵌套类"></a>嵌套类</h3><p>嵌套类不能通过MVEL 2.0中的标准点表示法（如Java中）来访问。 相反，你必须用$符号限定这些类。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">org.proctor.Person$BodyPart</span><br></pre></td></tr></table></figure>
+<h2 id="七、流程控制"><a href="#七、流程控制" class="headerlink" title="七、流程控制"></a>七、流程控制</h2><p>MVEL的强大已经超出了简单的表达式。事实上，MVEL提供了一系列的程序流程控制操作符来方便你进行高级的脚本操作。</p>
+<h3 id="1-If-Then-Else"><a href="#1-If-Then-Else" class="headerlink" title="1. If-Then-Else"></a>1. If-Then-Else</h3><p>MVEL提供了完整的C/Java式的if-then-else块，如：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">if</span> (<span class="keyword">var</span> &gt; <span class="number">0</span>) &#123;</span><br><span class="line">   System.out.println(<span class="string">"Greater than zero!"</span>);</span><br><span class="line">&#125; <span class="keyword">else</span> <span class="keyword">if</span> (<span class="keyword">var</span> == -<span class="number">1</span>) &#123; </span><br><span class="line">   System.out.println(<span class="string">"Minus one!"</span>);</span><br><span class="line">&#125; <span class="keyword">else</span> &#123; </span><br><span class="line">   System.out.println(<span class="string">"Something else!"</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="2-三目运算符"><a href="#2-三目运算符" class="headerlink" title="2. 三目运算符"></a>2. 三目运算符</h3><p>其实就是Java中的条件表达式，如：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> &gt; <span class="number">0</span> ? <span class="string">"Yes"</span> : <span class="string">"No"</span>;</span><br></pre></td></tr></table></figure>
+<p>可以嵌套三目运算符</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> &gt; <span class="number">0</span> ? <span class="string">"Yes"</span> : (<span class="keyword">var</span> == -<span class="number">1</span> ? <span class="string">"Minus One!"</span> : <span class="string">"No"</span>)</span><br></pre></td></tr></table></figure>
+<h3 id="3-Foreach"><a href="#3-Foreach" class="headerlink" title="3. Foreach"></a>3. Foreach</h3><p>MVEL的强大特性之一就是其Foreach操作符，在功能和语法上，他都类似于java1.5中的for each操作符，它接收用冒号隔开的两个参数，第一个是当前元素的一个域变量，而第二个是要迭代的集合或数组。如下所示：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">count = <span class="number">0</span>;</span><br><span class="line">foreach (name : people) &#123;</span><br><span class="line">   count++;</span><br><span class="line">   System.out.println(<span class="string">"Person #"</span> + count + <span class="string">":"</span> + name);</span><br><span class="line">&#125;</span><br><span class="line">    </span><br><span class="line">System.out.println(<span class="string">"Total people: "</span> + count);</span><br></pre></td></tr></table></figure>
+<p>因为MVEL将字符串视作一个可以迭代的对象，所以你可以用foreach语句来迭代一个字符串（一个字符接一个字符的）：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">str = <span class="string">"ABCDEFGHIJKLMNOPQRSTUVWXYZ"</span>;</span><br><span class="line"></span><br><span class="line">foreach (el : str) &#123;</span><br><span class="line">   System.out.print(<span class="string">"["</span>+ el + <span class="string">"]"</span>); </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>上面的示例将会输出：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">[A][B][C][D][E][F][G][H][I][J][K][L][M][N][O][P][Q][R][S][T][U][V][W][X][Y][Z]</span><br></pre></td></tr></table></figure>
+<p>你也可以利用MVEL进行计数（从1开始）：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">foreach (x : <span class="number">9</span>) &#123; </span><br><span class="line">   System.out.print(x);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>这会输出：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="number">123456789</span></span><br></pre></td></tr></table></figure>
+<p><strong>注意：</strong>像java5.0一样，在MVEL2.0中，可以将foreach简化成关键字for来使用，如：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">for</span> (item : collection) &#123; ... &#125;</span><br></pre></td></tr></table></figure>
+<h3 id="4-for循环"><a href="#4-for循环" class="headerlink" title="4. for循环"></a>4. for循环</h3><p>MVEL实现了标准的C语言的for循环：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">for</span> (<span class="keyword">int</span> i =<span class="number">0</span>; i &lt; <span class="number">100</span>; i++) &#123; </span><br><span class="line">   System.out.println(i);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="5-Do-While-Do-Until"><a href="#5-Do-While-Do-Until" class="headerlink" title="5. Do While, Do Until"></a>5. Do While, Do Until</h3><p>和java中的意义一样，MVEL也实现了Do While,Do Until，While和Until意义正好相反。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">do</span> &#123; </span><br><span class="line">   x = something();</span><br><span class="line">&#125; </span><br><span class="line"><span class="keyword">while</span> (x != <span class="keyword">null</span>);</span><br></pre></td></tr></table></figure>
+<p>在语义上相当于：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">do</span> &#123;</span><br><span class="line">   x = something();</span><br><span class="line">&#125;</span><br><span class="line">until (x == <span class="keyword">null</span>);</span><br></pre></td></tr></table></figure>
+<h3 id="6-While-Until"><a href="#6-While-Until" class="headerlink" title="6. While, Until"></a>6. While, Until</h3><p>MVEL中实现了标准的While，并添加了一个与之相反的Until。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">while</span> (isTrue()) &#123;</span><br><span class="line">   doSomething();</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>或者写成</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">until (isFalse()) &#123;</span><br><span class="line">   doSomething();</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="八、投影和交集"><a href="#八、投影和交集" class="headerlink" title="八、投影和交集"></a>八、投影和交集</h2><p>简单地说，投影是一种描述集合的方式。 通过非常简单的语法，您可以检索集合中非常复杂的对象模型。</p>
+<p>假设，你有一个User对象的集合。 每个对象都有一个Parent。 现在你想获得集合users中的所有parent的name的列表（假设Parent中有字段name），你可以这样来写：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">parentNames = (parent.name in users);</span><br></pre></td></tr></table></figure>
+<p>您甚至可以执行嵌套操作，假设，User对象有个集合成员叫做familyMembers，现在我们想获得一个所有家庭成员姓名的集合：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">familyMembers = (<span class="function">name <span class="title">in</span> <span class="params">(familyMembers in users)</span>)</span>;</span><br></pre></td></tr></table></figure>
+<h2 id="九、赋值"><a href="#九、赋值" class="headerlink" title="九、赋值"></a>九、赋值</h2><p>MMVEL允许你对表达式中的变量进行赋值，以便在运行时获取，或在表达式内部使用。因为MVEL是动态类型语言，所以你不必为了声明一个变量而指定其类型。当然，你也可以选择指定。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">str =“My String”; <span class="comment">// valid</span></span><br><span class="line">String str =“My String”; <span class="comment">// valid</span></span><br></pre></td></tr></table></figure>
+<p>与java语言不同的是，当给一个指定类型的变量赋值时，MVEL会提供自动的类型转换（可行的话），如：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">String num = <span class="number">1</span>;</span><br><span class="line"><span class="keyword">assert</span> num <span class="keyword">instanceof</span> String＆amp;＆amp; num ==“<span class="number">1</span>”;</span><br></pre></td></tr></table></figure>
+<p>对于动态类型变量而言，你要想对其进行类型转换，你只需要将值转换成相应的类型既可：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">num =（String）<span class="number">1</span>;</span><br><span class="line"><span class="keyword">assert</span> num <span class="keyword">instanceof</span> String＆amp;＆amp; num ==“<span class="number">1</span>”;</span><br></pre></td></tr></table></figure>
+<h2 id="十、函数定义"><a href="#十、函数定义" class="headerlink" title="十、函数定义"></a>十、函数定义</h2><p>MVEL可以使用def或function关键字来定义本地函数。</p>
+<p>函数必须是先声明后引用，唯一例外的是递归调用的时候。</p>
+<h3 id="1-一个简单示例"><a href="#1-一个简单示例" class="headerlink" title="1. 一个简单示例"></a>1. 一个简单示例</h3><p>定义一个简单函数：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="function">def <span class="title">hello</span><span class="params">()</span> </span>&#123; System.out.println(<span class="string">"Hello!"</span>); &#125;</span><br></pre></td></tr></table></figure>
+<p>定义了一个没有参数的函数<code>hello</code>.当调用该函数时会在控制台打印”Hello!” 一个MVEL定义的函数就像任何常规的方法调用。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">hello(); <span class="comment">// 调用函数</span></span><br></pre></td></tr></table></figure>
+<h3 id="2-传参和返回值"><a href="#2-传参和返回值" class="headerlink" title="2. 传参和返回值"></a>2. 传参和返回值</h3><p>函数可以接收参数和返回一个值，看下面的示例：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="function">def <span class="title">addTwo</span><span class="params">(a, b)</span> </span>&#123; </span><br><span class="line">   a + b;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>这个函数会接收两个参数(a和b)，然后将这两个变量相加。因为MVEL遵循last-value-out原则，所以结果将会被返回。因此，你可以这样来使用这个函数：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">val = addTwo(<span class="number">5</span>, <span class="number">2</span>);</span><br><span class="line"><span class="keyword">assert</span> val == <span class="number">10</span>;</span><br></pre></td></tr></table></figure>
+<p>当然，也可以使用return关键字来强制从程序内部返回一个函数值。</p>
+<h3 id="3-闭包"><a href="#3-闭包" class="headerlink" title="3. 闭包"></a>3. 闭包</h3><p>MVEL支持闭包,然而其功能与本地java函数没有任何关联。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 定义一个接收一个参数的函数</span></span><br><span class="line"><span class="function">def <span class="title">someFunction</span><span class="params">(f_ptr)</span> </span>&#123; f_ptr(); &#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 定义变量a</span></span><br><span class="line"><span class="keyword">var</span> a = <span class="number">10</span>;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 传递函数闭包</span></span><br><span class="line">someFunction(def &#123; a * <span class="number">10</span> &#125;);</span><br></pre></td></tr></table></figure>
+<h2 id="十一、Lambda表达式"><a href="#十一、Lambda表达式" class="headerlink" title="十一、Lambda表达式"></a>十一、Lambda表达式</h2><p>MVEL允许定义Lambda方法，如下所示：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">threshold = def (x) &#123; x &gt;= <span class="number">10</span> ? x : <span class="number">0</span> &#125;;</span><br><span class="line">result = cost + threshold(lowerBound);</span><br></pre></td></tr></table></figure>
+<p>上面的例子定义了一个Lambda，并将其赋值给变量”threshold”.Lambda实质上就是一个用来给变量赋值的函数，也是闭包。</p>
+<p>翻译原文：<a href="http://mvel.documentnode.com/" target="_blank" rel="noopener">http://mvel.documentnode.com/</a></p>
+
+            <!--[if lt IE 9]><script>document.createElement('audio');</script><![endif]-->
+            <audio id="audio" loop="1" preload="auto" controls="controls" data-autoplay="yes">
+                <source type="audio/mpeg" src="">
+            </audio>
+            
+                <ul id="audio-list" style="display:none">
+                    
+                        <li title="0" data-url="http://link.hhtjim.com/163/425570952.mp3"></li>
+                    
+                        <li title="1" data-url="http://link.hhtjim.com/163/425570952.mp3"></li>
+                    
+                </ul>
+            
+        </div>
+        
+    <div id="gitalk-container" class="comment link" data-ae="yes" data-ci="" data-cs="" data-r="" data-o="" data-a="" data-d="false">查看评论</div>
+
+
+    </div>
+    
+</div>
+
+
+    </div>
+</div>
+</body>
+<script src="//cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.min.js"></script>
+<script src="//lib.baomitu.com/jquery/1.8.3/jquery.min.js"></script>
+<script src="/js/plugin.js"></script>
+<script src="/js/diaspora.js"></script>
+<link rel="stylesheet" href="/photoswipe/photoswipe.css">
+<link rel="stylesheet" href="/photoswipe/default-skin/default-skin.css">
+<script src="/photoswipe/photoswipe.min.js"></script>
+<script src="/photoswipe/photoswipe-ui-default.min.js"></script>
+
+<!-- Root element of PhotoSwipe. Must have class pswp. -->
+<div class="pswp" tabindex="-1" role="dialog" aria-hidden="true">
+    <!-- Background of PhotoSwipe. 
+         It's a separate element as animating opacity is faster than rgba(). -->
+    <div class="pswp__bg"></div>
+    <!-- Slides wrapper with overflow:hidden. -->
+    <div class="pswp__scroll-wrap">
+        <!-- Container that holds slides. 
+            PhotoSwipe keeps only 3 of them in the DOM to save memory.
+            Don't modify these 3 pswp__item elements, data is added later on. -->
+        <div class="pswp__container">
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+        </div>
+        <!-- Default (PhotoSwipeUI_Default) interface on top of sliding area. Can be changed. -->
+        <div class="pswp__ui pswp__ui--hidden">
+            <div class="pswp__top-bar">
+                <!--  Controls are self-explanatory. Order can be changed. -->
+                <div class="pswp__counter"></div>
+                <button class="pswp__button pswp__button--close" title="Close (Esc)"></button>
+                <button class="pswp__button pswp__button--share" title="Share"></button>
+                <button class="pswp__button pswp__button--fs" title="Toggle fullscreen"></button>
+                <button class="pswp__button pswp__button--zoom" title="Zoom in/out"></button>
+                <!-- Preloader demo http://codepen.io/dimsemenov/pen/yyBWoR -->
+                <!-- element will get class pswp__preloader--active when preloader is running -->
+                <div class="pswp__preloader">
+                    <div class="pswp__preloader__icn">
+                      <div class="pswp__preloader__cut">
+                        <div class="pswp__preloader__donut"></div>
+                      </div>
+                    </div>
+                </div>
+            </div>
+            <div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap">
+                <div class="pswp__share-tooltip"></div> 
+            </div>
+            <button class="pswp__button pswp__button--arrow--left" title="Previous (arrow left)">
+            </button>
+            <button class="pswp__button pswp__button--arrow--right" title="Next (arrow right)">
+            </button>
+            <div class="pswp__caption">
+                <div class="pswp__caption__center"></div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+</html>
